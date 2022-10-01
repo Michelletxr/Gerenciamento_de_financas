@@ -1,5 +1,6 @@
 package com.imd.financas_api.user.service;
 
+import com.imd.financas_api.security.JWTConfig;
 import com.imd.financas_api.user.dto.UserDTO;
 import com.imd.financas_api.user.model.User;
 import com.imd.financas_api.user.repository.UserRepository;
@@ -16,9 +17,12 @@ public class UserService {
     private final UserRepository repository;
     private final UserDTO dto;
 
+    private JWTConfig jwtConfig;
+
     public UserService(UserRepository repository){
         this.repository = repository;
-        this.dto = new UserDTO();;
+        this.dto = new UserDTO();
+        this.jwtConfig = new JWTConfig();
     }
 
     public List<UserDTO> findAll() {
@@ -44,7 +48,7 @@ public class UserService {
                 User user = new User().builder()
                         .name(requestUser.name())
                         .login(requestUser.login())
-                        .password(requestUser.password())
+                        .password(jwtConfig.passwordEnconde(requestUser.password()))
                         .email(requestUser.email())
                         .build();
 
@@ -66,7 +70,7 @@ public class UserService {
 
     public boolean verifyUser(String login){
         boolean isValid = false;
-        if(!Objects.isNull(repository.findByLogin(login))){
+        if(Objects.isNull(repository.findByLogin(login))){
             isValid = true;
         }
         return isValid;
