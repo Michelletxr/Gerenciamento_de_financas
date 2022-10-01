@@ -37,6 +37,7 @@ public class UserDTO {
                 .id(user.getId())
                 .name(user.getName())
                 .login(user.getLogin())
+                .password(user.getPassword())
                 .email(user.getEmail())
                 .build();
 
