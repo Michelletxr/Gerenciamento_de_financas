@@ -15,24 +15,24 @@ public class ContaDTO {
     @NotNull
     private String name;
     @NotNull
-    private Double saldo;
+    private Double value;
 
     @Builder
-    public ContaDTO(UUID id, String name, Double saldo) {
+    public ContaDTO(UUID id, String name, Double value) {
         this.id = id;
         this.name = name;
-        this.saldo = saldo;
+        this.value = value;
     }
 
-    public record RequestUser(String name, Double saldo){}
+    public record RequestConta(String name,String login, Double value){}
 
-    public record ResponseUser(UUID id, String login, Double saldo){}
+    public record ResponseConta(UUID id, String login, Double value){}
 
-    public ContaDTO buildUserToResponseConta(Conta conta){
+    public ContaDTO buildContaToResponseConta(Conta conta){
         return new ContaDTO().builder()
                 .id(conta.getId())
                 .name(conta.getName())
-                .saldo(conta.getSaldo())
+                .value(conta.getValue())
                 .build();
 
     }

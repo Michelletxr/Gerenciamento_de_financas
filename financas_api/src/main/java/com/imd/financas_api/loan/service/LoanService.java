@@ -1,4 +1,4 @@
-package com.imd.financas_api.conta.service;
+package com.imd.financas_api.loan.service;
 
 import com.imd.financas_api.security.JWTConfig;
 import com.imd.financas_api.user.dto.UserDTO;
@@ -12,14 +12,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class ContaService {
-
+public class LoanService {
     private final UserRepository repository;
     private final UserDTO dto;
 
     private JWTConfig jwtConfig;
 
-    public ContaService(UserRepository repository){
+    public LoanService(UserRepository repository){
         this.repository = repository;
         this.dto = new UserDTO();
         this.jwtConfig = new JWTConfig();

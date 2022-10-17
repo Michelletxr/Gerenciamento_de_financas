@@ -26,11 +26,11 @@ public class ContaController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> save(@RequestBody UserDTO.RequestUser user){
+    public ResponseEntity<ContaDTO> save(@RequestBody ContaDTO.RequestConta conta){
         ResponseEntity response;
-        UserDTO responseUser = service.Save(user);
-        if(!Objects.isNull(responseUser)){
-            response = new ResponseEntity<>(responseUser, HttpStatus.OK);
+        ContaDTO responseConta = service.Save(conta);
+        if(!Objects.isNull(responseConta)){
+            response = new ResponseEntity<>(responseConta, HttpStatus.OK);
         }else{
             response = new ResponseEntity<>("erro ao tentar salvar usuário", HttpStatus.BAD_REQUEST);
         }
@@ -39,17 +39,17 @@ public class ContaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> findAll(){
-        List<UserDTO> users = service.findAll();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<List<ContaDTO>> findAll(){
+        List<ContaDTO> contas = service.findAll();
+        return new ResponseEntity<>(contas, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> findById(@PathVariable UUID id){
         ResponseEntity response;
-        UserDTO responseUser = service.findById(id);
-        if(!Objects.isNull(responseUser)){
-            response = new ResponseEntity<>(responseUser, HttpStatus.OK);
+        ContaDTO responseConta = service.findById(id);
+        if(!Objects.isNull(responseConta)){
+            response = new ResponseEntity<>(responseConta, HttpStatus.OK);
         }else {
             response = new ResponseEntity<>("erro ao solicitar usuário com o id informado",HttpStatus.BAD_REQUEST);
         }

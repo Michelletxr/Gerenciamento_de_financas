@@ -1,7 +1,8 @@
-package com.imd.financas_api.conta.controller;
+package com.imd.financas_api.loan.controller;
 
-import com.imd.financas_api.conta.dto.ContaDTO;
-import com.imd.financas_api.conta.service.ContaService;
+import com.imd.financas_api.loan.dto.LoanDTO;
+import com.imd.financas_api.loan.service.LoanService;
+import com.imd.financas_api.loan.dto.LoanDTO;
 import com.imd.financas_api.user.dto.UserDTO;
 import com.imd.financas_api.user.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -12,17 +13,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-
 @RestController
-@RequestMapping("api/conta")
-public class ContaController {
+@RequestMapping("api/emprestimo")
+public class LoanController {
+    private final LoanService service;
+    private final LoanDTO dto;
 
-    private final ContaService service;
-    private final ContaDTO dto;
-
-    public ContaController(ContaService service){
+    public LoanController(LoanService service){
         this.service = service;
-        this.dto = new ContaDTO();
+        this.dto = new LoanDTO();
     }
 
     @PostMapping
