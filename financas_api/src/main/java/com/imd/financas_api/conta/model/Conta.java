@@ -17,7 +17,6 @@ public class Conta {
     private String name;
 
     @NotNull
-    @Column(unique = true)
     private Double value;
 
     @Builder
