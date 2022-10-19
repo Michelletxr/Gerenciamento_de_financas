@@ -32,7 +32,7 @@ public class ContaController {
         if(!Objects.isNull(responseConta)){
             response = new ResponseEntity<>(responseConta, HttpStatus.OK);
         }else{
-            response = new ResponseEntity<>("erro ao tentar salvar usuário", HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>("erro ao tentar salvar conta", HttpStatus.BAD_REQUEST);
         }
 
         return response;
@@ -51,7 +51,7 @@ public class ContaController {
         if(!Objects.isNull(responseConta)){
             response = new ResponseEntity<>(responseConta, HttpStatus.OK);
         }else {
-            response = new ResponseEntity<>("erro ao solicitar usuário com o id informado",HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>("erro ao solicitar conta com o id informado",HttpStatus.BAD_REQUEST);
         }
         return response;
     }
@@ -61,9 +61,9 @@ public class ContaController {
         ResponseEntity response;
 
         if(service.delete(id)){
-            response = new ResponseEntity<>("Usuário deletado com sucesso!", HttpStatus.OK);
+            response = new ResponseEntity<>("Conta deletada com sucesso!", HttpStatus.OK);
         }else {
-            response = new ResponseEntity<>("Erro ao tentar deletar usuário", HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>("Erro ao tentar deletar conta", HttpStatus.BAD_REQUEST);
         }
         return response;
     }

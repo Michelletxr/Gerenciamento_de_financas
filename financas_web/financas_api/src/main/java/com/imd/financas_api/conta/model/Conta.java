@@ -18,13 +18,12 @@ public class Conta {
 
     @NotNull
     @Column(unique = true)
-    private Double saldo;
-
+    private Double value;
 
     @Builder
-    public Conta(UUID id, String name, Double saldo) {
+    public Conta(UUID id, String name, Double value) {
         this.id = id;
         this.name = name;
-        this.saldo = saldo;
+        this.value = value;
     }
 }
