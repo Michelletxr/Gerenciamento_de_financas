@@ -24,7 +24,7 @@ public class ContaDTO {
         this.value = value;
     }
 
-    public record RequestConta(String name,String login, Double value){}
+    public record RequestConta(String name, Double value){}
 
     public record ResponseConta(UUID id, String login, Double value){}
 
