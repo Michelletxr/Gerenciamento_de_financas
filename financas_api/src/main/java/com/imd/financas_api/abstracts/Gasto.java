@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 import java.util.UUID;
 
 public abstract class Gasto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;

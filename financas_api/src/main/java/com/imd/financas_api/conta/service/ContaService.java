@@ -66,11 +66,4 @@ public class ContaService {
         return isDelet;
     }
 
-  /*  public boolean verifyUser(String login){
-        boolean isValid = false;
-        if(Objects.isNull(repository.findByLogin(login))){
-            isValid = true;
-        }
-        return isValid;
-    }*/
 }
