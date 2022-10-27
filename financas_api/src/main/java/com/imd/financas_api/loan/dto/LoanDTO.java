@@ -1,6 +1,5 @@
 package com.imd.financas_api.loan.dto;
 
-import com.imd.financas_api.conta.model.Conta;
 import com.imd.financas_api.loan.model.Loan;
 import com.sun.istack.NotNull;
 import lombok.*;

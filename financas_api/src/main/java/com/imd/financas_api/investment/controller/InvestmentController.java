@@ -1,10 +1,7 @@
 package com.imd.financas_api.investment.controller;
 
-import com.imd.financas_api.loan.dto.LoanDTO;
-import com.imd.financas_api.loan.service.LoanService;
-import com.imd.financas_api.loan.dto.LoanDTO;
-import com.imd.financas_api.user.dto.UserDTO;
-import com.imd.financas_api.user.service.UserService;
+import com.imd.financas_api.investment.dto.InvestmentDTO;
+import com.imd.financas_api.investment.service.InvestmentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,22 +11,22 @@ import java.util.Objects;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/emprestimo")
-public class LoanController {
-    private final LoanService service;
-    private final LoanDTO dto;
+@RequestMapping("api/investimento")
+public class InvestmentController {
+    private final InvestmentService service;
+    private final InvestmentDTO dto;
 
-    public LoanController(LoanService service){
+    public InvestmentController(InvestmentService service){
         this.service = service;
-        this.dto = new LoanDTO();
+        this.dto = new InvestmentDTO();
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> save(@RequestBody UserDTO.RequestUser user){
+    public ResponseEntity<InvestmentDTO> save(@RequestBody InvestmentDTO.RequestInvestment investment){
         ResponseEntity response;
-        UserDTO responseUser = service.Save(user);
-        if(!Objects.isNull(responseUser)){
-            response = new ResponseEntity<>(responseUser, HttpStatus.OK);
+        InvestmentDTO responseInvestment = service.Save(investment);
+        if(!Objects.isNull(responseInvestment)){
+            response = new ResponseEntity<>(responseInvestment, HttpStatus.OK);
         }else{
             response = new ResponseEntity<>("erro ao tentar salvar usuário", HttpStatus.BAD_REQUEST);
         }
@@ -38,19 +35,19 @@ public class LoanController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> findAll(){
-        List<UserDTO> users = service.findAll();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<List<InvestmentDTO>> findAll(){
+        List<InvestmentDTO> investments = service.findAll();
+        return new ResponseEntity<>(investments, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> findById(@PathVariable UUID id){
         ResponseEntity response;
-        UserDTO responseUser = service.findById(id);
-        if(!Objects.isNull(responseUser)){
-            response = new ResponseEntity<>(responseUser, HttpStatus.OK);
+        InvestmentDTO responseInvestment = service.findById(id);
+        if(!Objects.isNull(responseInvestment)){
+            response = new ResponseEntity<>(responseInvestment, HttpStatus.OK);
         }else {
-            response = new ResponseEntity<>("erro ao solicitar usuário com o id informado",HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>("erro ao solicitar investimento com o id informado",HttpStatus.BAD_REQUEST);
         }
         return response;
     }
@@ -60,9 +57,9 @@ public class LoanController {
         ResponseEntity response;
 
         if(service.delete(id)){
-            response = new ResponseEntity<>("Usuário deletado com sucesso!", HttpStatus.OK);
+            response = new ResponseEntity<>("Investimento deletado com sucesso!", HttpStatus.OK);
         }else {
-            response = new ResponseEntity<>("Erro ao tentar deletar usuário", HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>("Erro ao tentar deletar investimento", HttpStatus.BAD_REQUEST);
         }
         return response;
     }

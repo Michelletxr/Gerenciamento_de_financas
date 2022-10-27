@@ -2,9 +2,6 @@ package com.imd.financas_api.loan.controller;
 
 import com.imd.financas_api.loan.dto.LoanDTO;
 import com.imd.financas_api.loan.service.LoanService;
-import com.imd.financas_api.loan.dto.LoanDTO;
-import com.imd.financas_api.user.dto.UserDTO;
-import com.imd.financas_api.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +22,11 @@ public class LoanController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> save(@RequestBody UserDTO.RequestUser user){
+    public ResponseEntity<LoanDTO> save(@RequestBody LoanDTO.RequestLoan loan){
         ResponseEntity response;
-        UserDTO responseUser = service.Save(user);
-        if(!Objects.isNull(responseUser)){
-            response = new ResponseEntity<>(responseUser, HttpStatus.OK);
+        LoanDTO responseLoan = service.Save(loan);
+        if(!Objects.isNull(responseLoan)){
+            response = new ResponseEntity<>(responseLoan, HttpStatus.OK);
         }else{
             response = new ResponseEntity<>("erro ao tentar salvar usuário", HttpStatus.BAD_REQUEST);
         }
@@ -38,19 +35,19 @@ public class LoanController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> findAll(){
-        List<UserDTO> users = service.findAll();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<List<LoanDTO>> findAll(){
+        List<LoanDTO> loans = service.findAll();
+        return new ResponseEntity<>(loans, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> findById(@PathVariable UUID id){
         ResponseEntity response;
-        UserDTO responseUser = service.findById(id);
-        if(!Objects.isNull(responseUser)){
-            response = new ResponseEntity<>(responseUser, HttpStatus.OK);
+        LoanDTO responseLoan = service.findById(id);
+        if(!Objects.isNull(responseLoan)){
+            response = new ResponseEntity<>(responseLoan, HttpStatus.OK);
         }else {
-            response = new ResponseEntity<>("erro ao solicitar usuário com o id informado",HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>("erro ao solicitar empréstimo com o id informado",HttpStatus.BAD_REQUEST);
         }
         return response;
     }
@@ -60,9 +57,9 @@ public class LoanController {
         ResponseEntity response;
 
         if(service.delete(id)){
-            response = new ResponseEntity<>("Usuário deletado com sucesso!", HttpStatus.OK);
+            response = new ResponseEntity<>("Empréstimo deletado com sucesso!", HttpStatus.OK);
         }else {
-            response = new ResponseEntity<>("Erro ao tentar deletar usuário", HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>("Erro ao tentar deletar empréstimo", HttpStatus.BAD_REQUEST);
         }
         return response;
     }

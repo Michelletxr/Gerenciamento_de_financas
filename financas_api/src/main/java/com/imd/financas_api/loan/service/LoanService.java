@@ -1,9 +1,9 @@
 package com.imd.financas_api.loan.service;
 
 import com.imd.financas_api.security.JWTConfig;
-import com.imd.financas_api.user.dto.UserDTO;
-import com.imd.financas_api.user.model.User;
-import com.imd.financas_api.user.repository.UserRepository;
+import com.imd.financas_api.loan.dto.LoanDTO;
+import com.imd.financas_api.loan.model.Loan;
+import com.imd.financas_api.loan.repository.LoanRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,49 +13,46 @@ import java.util.UUID;
 
 @Service
 public class LoanService {
-    private final UserRepository repository;
-    private final UserDTO dto;
+    private final LoanRepository repository;
+    private final LoanDTO dto;
 
     private JWTConfig jwtConfig;
 
-    public LoanService(UserRepository repository){
+    public LoanService(LoanRepository repository){
         this.repository = repository;
-        this.dto = new UserDTO();
+        this.dto = new LoanDTO();
         this.jwtConfig = new JWTConfig();
     }
 
-    public List<UserDTO> findAll() {
-        List<User> users = repository.findAll();
-        return users.stream().map(user -> {
-            return dto.buildUserToResponseUser(user);
+    public List<LoanDTO> findAll() {
+        List<Loan> loans = repository.findAll();
+        return loans.stream().map(loan -> {
+            return dto.buildLoanToResponseLoan(loan);
         }).toList();
     }
-    public UserDTO findById(UUID id){
-        Optional<User> user = repository.findById(id);
-        UserDTO responseUser = null;
+    public LoanDTO findById(UUID id){
+        Optional<Loan> loan = repository.findById(id);
+        LoanDTO responseLoan = null;
 
-        if(user.isPresent()){
-            responseUser = dto.buildUserToResponseUser(user.get());
+        if(loan.isPresent()){
+            responseLoan = dto.buildLoanToResponseLoan(loan.get());
         }
-        return responseUser;
+        return responseLoan;
     }
-    public UserDTO Save(UserDTO.RequestUser requestUser){
-        UserDTO responseUser = null;
-        if(!Objects.isNull(requestUser)){
-            if(verifyUser(requestUser.login()))
-            {
-                User user = new User().builder()
-                        .name(requestUser.name())
-                        .login(requestUser.login())
-                        .password(jwtConfig.passwordEnconde(requestUser.password()))
-                        .email(requestUser.email())
+    public LoanDTO Save(LoanDTO.RequestLoan requestLoan){
+        LoanDTO responseLoan = null;
+        if(!Objects.isNull(requestLoan)){
+            //if(verifyUser(requestLoan.login()))
+            //{
+                Loan loan = new Loan().builder()
+                        .name(requestLoan.name())
                         .build();
 
-                User createUser = repository.save(user);
-                responseUser = dto.buildUserToResponseUser(createUser);
-            }
+                Loan createLoan = repository.save(loan);
+                responseLoan = dto.buildLoanToResponseLoan(createLoan);
+           // }
         }
-        return responseUser;
+        return responseLoan;
     }
 
     public boolean delete(UUID id){
@@ -67,11 +64,11 @@ public class LoanService {
         return isDelet;
     }
 
-    public boolean verifyUser(String login){
+   /* public boolean verifyUser(String login){
         boolean isValid = false;
         if(Objects.isNull(repository.findByLogin(login))){
             isValid = true;
         }
         return isValid;
-    }
+    }*/
 }
