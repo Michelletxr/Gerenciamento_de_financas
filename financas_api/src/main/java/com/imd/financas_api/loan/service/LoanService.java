@@ -45,7 +45,16 @@ public class LoanService {
             //if(verifyUser(requestLoan.login()))
             //{
                 Loan loan = new Loan().builder()
-                        .name(requestLoan.name())
+                        .descricao(requestLoan.descricao())
+                        .valor(requestLoan.valor())
+                        .valor_pagar(requestLoan.valor_pagar())
+                        .parcelas(requestLoan.parcelas())
+                        .tipo_juros(requestLoan.tipo_juros())
+                        .juros(requestLoan.juros())
+                        .valor_parcela(requestLoan.valor_parcela())
+                        .data_inicio(requestLoan.data_inicio())
+                        .data_final(requestLoan.data_final())
+                        .parcela(requestLoan.parcela())
                         .build();
 
                 Loan createLoan = repository.save(loan);

@@ -6,5 +6,5 @@ import java.util.UUID;
 
 
 public interface LoanRepository extends JpaRepository<Loan, UUID>{
-    public Loan findByLogin(UUID id);
+    //public Loan findByLogin(UUID id);
 }

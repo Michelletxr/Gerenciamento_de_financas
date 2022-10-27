@@ -1,7 +1,5 @@
 package com.imd.financas_api.investment.dto;
 
-import com.imd.financas_api.conta.dto.ContaDTO;
-import com.imd.financas_api.conta.model.Conta;
 import com.imd.financas_api.investment.model.Investment;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -18,45 +16,49 @@ public class InvestmentDTO {
 
     private Integer id_investment;
     @NotNull
-    private String name;
-    @NotNull
-    private Double valor_pego;
+    private String corretora;
 
-    @NotNull
-    private Double valor_pago;
+    private String titulo;
 
-    @NotNull
-    private Integer parcelas;
+    private String tipo_titulo;
 
-    private String tipo_juros;
+    private Date vencimento_titulo;
 
-    @NotNull
-    private Double juros;
+    private Date data_investimento;
 
-    @NotNull
-    private Double valor_parcela;
+    private Double investido;
 
-    @NotNull
-    private Date data_pagamento;
+    private String objetivo;
 
-    private String status;
 
     @Builder
-    public InvestmentDTO(UUID id, String name, Double valor_pego) {
+    public InvestmentDTO(UUID id, Integer id_investment, String corretora, String titulo, String tipo_titulo, Date vencimento_titulo, Date data_investimento, Double investido, String objetivo) {
         this.id = id;
-        this.name = name;
-        this.valor_pego = valor_pego;
+        this.id_investment = id_investment;
+        this.corretora = corretora;
+        this.titulo = titulo;
+        this.tipo_titulo = tipo_titulo;
+        this.vencimento_titulo = vencimento_titulo;
+        this.data_investimento = data_investimento;
+        this.investido = investido;
+        this.objetivo = objetivo;
     }
 
-    public record RequestLoan(String name,String login, Double value){}
+    public record RequestInvestment(Integer id_investment, String corretora, String titulo, String tipo_titulo, Date vencimento_titulo, Date data_investimento, Double investido, String objetivo){}
 
-    public record ResponseLoan(UUID id, String login, Double value){}
+    public record ResponseInvestment(UUID id, Integer id_investment, String corretora, String titulo, String tipo_titulo, Date vencimento_titulo, Date data_investimento, Double investido, String objetivo){}
 
-    public ContaDTO buildContaToResponseConta(Conta conta){
-        return new ContaDTO().builder()
-                .id(conta.getId())
-                .name(conta.getName())
-                .value(conta.getValue())
+    public InvestmentDTO buildInvestmentToResponseInvestment(Investment investment){
+        return new InvestmentDTO().builder()
+                .id(investment.getId())
+                .id_investment(investment.getId_investment())
+                .corretora(investment.getCorretora())
+                .titulo(investment.getTitulo())
+                .tipo_titulo(investment.getTipo_titulo())
+                .vencimento_titulo(investment.getVencimento_titulo())
+                .data_investimento(investment.getData_investimento())
+                .investido(investment.getInvestido())
+                .objetivo(investment.getObjetivo())
                 .build();
 
     }

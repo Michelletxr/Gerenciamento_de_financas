@@ -22,13 +22,13 @@ public class InvestmentController {
     }
 
     @PostMapping
-    public ResponseEntity<InvestmentDTO> save(@RequestBody InvestmentDTO.RequestInvestment investment){
+    public ResponseEntity<InvestmentDTO> save(@RequestBody InvestmentDTO.RequestInvestment requestInvestment){
         ResponseEntity response;
-        InvestmentDTO responseInvestment = service.Save(investment);
+        InvestmentDTO responseInvestment = service.Save(requestInvestment);
         if(!Objects.isNull(responseInvestment)){
             response = new ResponseEntity<>(responseInvestment, HttpStatus.OK);
         }else{
-            response = new ResponseEntity<>("erro ao tentar salvar usuário", HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>("erro ao tentar salvar investimento", HttpStatus.BAD_REQUEST);
         }
 
         return response;

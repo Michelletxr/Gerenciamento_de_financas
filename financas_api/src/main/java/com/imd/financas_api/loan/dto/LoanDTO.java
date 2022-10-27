@@ -1,7 +1,5 @@
 package com.imd.financas_api.loan.dto;
 
-import com.imd.financas_api.conta.dto.ContaDTO;
-import com.imd.financas_api.conta.model.Conta;
 import com.imd.financas_api.loan.model.Loan;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -64,6 +62,15 @@ public class LoanDTO {
         return new LoanDTO().builder()
                 .id(loan.getId())
                 .descricao(loan.getDescricao())
+                .valor(loan.getValor())
+                .valor_pagar(loan.getValor_pagar())
+                .parcelas(loan.getParcelas())
+                .tipo_juros(loan.getTipo_juros())
+                .juros(loan.getJuros())
+                .valor_parcela(loan.getValor_parcela())
+                .data_inicio(loan.getData_inicio())
+                .data_final(loan.getData_final())
+                .parcela(loan.getParcela())
                 .build();
 
     }

@@ -22,9 +22,9 @@ public class LoanController {
     }
 
     @PostMapping
-    public ResponseEntity<LoanDTO> save(@RequestBody LoanDTO.RequestLoan loan){
+    public ResponseEntity<LoanDTO> save(@RequestBody LoanDTO.RequestLoan requestLoan){
         ResponseEntity response;
-        LoanDTO responseLoan = service.Save(loan);
+        LoanDTO responseLoan = service.Save(requestLoan);
         if(!Objects.isNull(responseLoan)){
             response = new ResponseEntity<>(responseLoan, HttpStatus.OK);
         }else{
