@@ -15,38 +15,38 @@ public class Loan {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @NotNull
-    private String name;
+    private String descricao;
 
-    @NotNull
-    private Double valor_pego;
+    private Double valor;
 
-    @NotNull
-    private Double valor_pago;
+    private Double valor_pagar;
 
-    @NotNull
     private Integer parcelas;
 
     private String tipo_juros;
 
-    @NotNull
     private Double juros;
 
-    @NotNull
     private Double valor_parcela;
 
-    @NotNull
-    private Date data_pagamento;
+    private Date data_inicio;
 
-    private String status;
+    private Date data_final;
 
-    @NotNull
-    @Column(unique = true)
-    private Double value;
+    private Integer[] parcela;
 
     @Builder
-    public Loan(UUID id, String name, Double valor_pego) {
+    public Loan(UUID id, String descricao, Double valor, Double valor_pagar, Integer parcelas, String tipo_juros, Double juros, Double valor_parcela, Date data_inicio, Date data_final, Integer[] parcela) {
         this.id = id;
-        this.name = name;
-        this.valor_pego = valor_pego;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.valor_pagar = valor_pagar;
+        this.parcelas = parcelas;
+        this.tipo_juros = tipo_juros;
+        this.juros = juros;
+        this.valor_parcela = valor_parcela;
+        this.data_inicio = data_inicio;
+        this.data_final = data_final;
+        this.parcela = parcela;
     }
 }

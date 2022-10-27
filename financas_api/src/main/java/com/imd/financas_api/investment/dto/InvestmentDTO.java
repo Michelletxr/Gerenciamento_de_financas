@@ -1,5 +1,7 @@
 package com.imd.financas_api.investment.dto;
 
+import com.imd.financas_api.conta.dto.ContaDTO;
+import com.imd.financas_api.conta.model.Conta;
 import com.imd.financas_api.investment.model.Investment;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -50,11 +52,11 @@ public class InvestmentDTO {
 
     public record ResponseLoan(UUID id, String login, Double value){}
 
-    public com.imd.financas_api.loan.dto.InvestmentDTO buildLoanToResponseLoan(Loan loan){
-        return new com.imd.financas_api.loan.dto.LoanDTO().builder()
-                .id(loan.getId())
-                .name(loan.getName())
-                .valor_pego(loan.getValue())
+    public ContaDTO buildContaToResponseConta(Conta conta){
+        return new ContaDTO().builder()
+                .id(conta.getId())
+                .name(conta.getName())
+                .value(conta.getValue())
                 .build();
 
     }
