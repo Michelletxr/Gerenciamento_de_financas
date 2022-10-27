@@ -11,7 +11,7 @@
 
 - Crie um banco de dados localmente e o nomeie como finances_db
 - Acesse o arquivo application.properties no diretório raiz do projeto
-- Nas configurações do projeto, escolha uma porta para rodar o banco (a minha é a 5432), e coloque as informações de username e password do seu banco.
+- Nas configurações do projeto, application.properties escolha uma porta para rodar o banco (a minha é a 5432), e coloque as informações de username e password do seu banco.
 
 *Acessando a documentação*
 
