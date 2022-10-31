@@ -65,17 +65,5 @@ public class UserController {
         }
         return response;
     }
-
-    /*
-    @PostMapping(value= "/log")
-    public ResponseEntity<?> loggerUser(@RequestBody UserDTO.RequestUser user){
-        ResponseEntity response;
-        UserDTO userDTO = service.gerUserByLogin(user.login(), user.password());
-        if(!Objects.isNull(userDTO)){
-            response = new ResponseEntity<>(userDTO, HttpStatus.OK);
-        }else{
-            response = new ResponseEntity<>("Credenciais inválidas!", HttpStatus.BAD_REQUEST);
-        }
-        return response;
-    }*/
+    
 }
