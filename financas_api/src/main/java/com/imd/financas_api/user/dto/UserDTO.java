@@ -4,7 +4,6 @@ import com.imd.financas_api.user.model.User;
 import com.sun.istack.NotNull;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,17 +28,17 @@ public class UserDTO {
         this.login = login;
         this.password = password;
         this.email = email;
-        this.accounts = accounts;
+       // this.accounts = accounts;
     }
 
     public record RequestUser(String name, String login, String password, String email){}
 
     public record ResponseUser(UUID id, String login, String name, String email){}
 
-    public UserDTO buildUserToResponseUser(User user){
+    public static UserDTO buildUserToResponseUser(User user){
 
-        List<UUID> accounts_id = new ArrayList<>();
-        user.getContas().stream().map(c-> accounts_id.add(c.getId()));
+       // List<UUID> accounts_id = new ArrayList<>();
+        //user.getContas().stream().map(c-> accounts_id.add(c.getId()));
 
         return new UserDTO().builder()
                 .id(user.getId())
@@ -47,7 +46,7 @@ public class UserDTO {
                 .login(user.getLogin())
                 .password(user.getPassword())
                 .email(user.getEmail())
-                .accounts(accounts_id)
+                //.accounts(accounts_id)
                 .build();
 
     }

@@ -1,9 +1,9 @@
 package com.imd.financas_api.user.service;
 
-import com.imd.financas_api.security.JWTConfig;
 import com.imd.financas_api.user.dto.UserDTO;
 import com.imd.financas_api.user.model.User;
 import com.imd.financas_api.user.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,12 +17,11 @@ public class UserService {
     private final UserRepository repository;
     private final UserDTO dto;
 
-    private JWTConfig jwtConfig;
+    private PasswordEncoder encoder;
 
     public UserService(UserRepository repository){
         this.repository = repository;
         this.dto = new UserDTO();
-        this.jwtConfig = new JWTConfig();
     }
 
     public List<UserDTO> findAll() {
@@ -48,7 +47,7 @@ public class UserService {
                 User user = new User().builder()
                         .name(requestUser.name())
                         .login(requestUser.login())
-                        .password(jwtConfig.passwordEnconde(requestUser.password()))
+                        .password(encoder.encode(requestUser.password()))
                         .email(requestUser.email())
                         .build();
 
@@ -74,5 +73,15 @@ public class UserService {
             isValid = true;
         }
         return isValid;
+    }
+
+    public UserDTO gerUserByLogin(String login, String password){
+        UserDTO userDTO = null;
+        Optional<User> user = repository.findByLogin(login);
+        if(user.isPresent()){
+           String passwordEncoder = encoder.encode(password);
+           if(passwordEncoder.equals(password)) {userDTO = UserDTO.buildUserToResponseUser(user.get());}
+        }
+        return userDTO;
     }
 }

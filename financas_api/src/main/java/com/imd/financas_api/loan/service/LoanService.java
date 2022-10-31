@@ -1,6 +1,5 @@
 package com.imd.financas_api.loan.service;
 
-import com.imd.financas_api.security.JWTConfig;
 import com.imd.financas_api.user.dto.UserDTO;
 import com.imd.financas_api.user.model.User;
 import com.imd.financas_api.user.repository.UserRepository;
@@ -16,12 +15,12 @@ public class LoanService {
     private final UserRepository repository;
     private final UserDTO dto;
 
-    private JWTConfig jwtConfig;
+   // private JWTConfig jwtConfig;
 
     public LoanService(UserRepository repository){
         this.repository = repository;
         this.dto = new UserDTO();
-        this.jwtConfig = new JWTConfig();
+      //  this.jwtConfig = new JWTConfig();
     }
 
     public List<UserDTO> findAll() {
@@ -47,7 +46,7 @@ public class LoanService {
                 User user = new User().builder()
                         .name(requestUser.name())
                         .login(requestUser.login())
-                        .password(jwtConfig.passwordEnconde(requestUser.password()))
+                     //   .password(jwtConfig.passwordEnconde(requestUser.password()))
                         .email(requestUser.email())
                         .build();
 
