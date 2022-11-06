@@ -1,8 +1,14 @@
 package com.imd.financas_api.user.model;
 
+import com.imd.financas_api.conta.model.Conta;
 import com.sun.istack.NotNull;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -25,12 +31,16 @@ public class User {
     private String password;
     private String email;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Conta> contas;
+
     @Builder
-    public User(UUID id, String name, String login, String password, String email) {
+    public User(UUID id, String name, String login, String password, String email, List<Conta> accountList) {
         this.id = id;
         this.name = name;
         this.login = login;
         this.password = password;
         this.email = email;
+        this.contas = accountList;
     }
 }

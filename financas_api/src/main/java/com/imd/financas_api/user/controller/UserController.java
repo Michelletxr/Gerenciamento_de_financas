@@ -19,8 +19,8 @@ public class UserController {
     private final UserDTO dto;
 
     public UserController(UserService service){
-       this.service = service;
-       this.dto = new UserDTO();
+        this.service = service;
+        this.dto = new UserDTO();
     }
 
     @PostMapping
@@ -65,4 +65,17 @@ public class UserController {
         }
         return response;
     }
+
+    /*
+    @PostMapping(value= "/log")
+    public ResponseEntity<?> loggerUser(@RequestBody UserDTO.RequestUser user){
+        ResponseEntity response;
+        UserDTO userDTO = service.gerUserByLogin(user.login(), user.password());
+        if(!Objects.isNull(userDTO)){
+            response = new ResponseEntity<>(userDTO, HttpStatus.OK);
+        }else{
+            response = new ResponseEntity<>("Credenciais inválidas!", HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }*/
 }
