@@ -22,6 +22,7 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsServiceImpl userDetailsService;
 
 
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
@@ -30,7 +31,7 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                          .authorizeRequests()
-                         .antMatchers(HttpMethod.POST, "/login",  "/api/user").permitAll()
+                         .antMatchers(HttpMethod.POST, "/api/login",  "/api/user").permitAll()
                          .antMatchers(HttpMethod.GET, "/docs/**", "/webjars/**",
                                  "/v2/api-docs", "/swagger-ui.html", "/swagger-resources/**").permitAll()
                          .anyRequest().authenticated().and()
