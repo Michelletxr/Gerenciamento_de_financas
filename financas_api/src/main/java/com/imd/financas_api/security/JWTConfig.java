@@ -30,14 +30,14 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/login",  "/api/user").permitAll()
-                .antMatchers(HttpMethod.GET, "/docs/**", "/webjars/**",
-                        "/v2/api-docs", "/swagger-ui.html", "/swagger-resources/**").permitAll()
-                .anyRequest().authenticated().and()
-                .addFilter(new JWTAuthFilter(authenticationManager()))
-                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                         .authorizeRequests()
+                         .antMatchers(HttpMethod.POST, "/api/login",  "/api/user").permitAll()
+                         .antMatchers(HttpMethod.GET, "/docs/**", "/webjars/**",
+                                 "/v2/api-docs", "/swagger-ui.html", "/swagger-resources/**").permitAll()
+                         .anyRequest().authenticated().and()
+                         .addFilter(new JWTAuthFilter(authenticationManager()))
+                         .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+                         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     }
     @Bean

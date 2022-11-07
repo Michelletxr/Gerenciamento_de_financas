@@ -3,7 +3,6 @@ package com.imd.financas_api.conta.service;
 import com.imd.financas_api.conta.dto.ContaDTO;
 import com.imd.financas_api.conta.model.Conta;
 import com.imd.financas_api.conta.repository.ContaRepository;
-import com.imd.financas_api.security.JWTConfig;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,12 +16,12 @@ public class ContaService {
     private final ContaRepository repository;
     private final ContaDTO dto;
 
-    private JWTConfig jwtConfig;
+   // private JWTConfig jwtConfig;
 
     public ContaService(ContaRepository repository){
         this.repository = repository;
         this.dto = new ContaDTO();
-        this.jwtConfig = new JWTConfig();
+       // this.jwtConfig = new JWTConfig();
     }
 
     public List<ContaDTO> findAll() {
@@ -66,11 +65,4 @@ public class ContaService {
         return isDelet;
     }
 
-  /*  public boolean verifyUser(String login){
-        boolean isValid = false;
-        if(Objects.isNull(repository.findByLogin(login))){
-            isValid = true;
-        }
-        return isValid;
-    }*/
 }

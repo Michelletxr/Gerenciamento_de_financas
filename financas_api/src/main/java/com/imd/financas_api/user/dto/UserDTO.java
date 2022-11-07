@@ -28,7 +28,7 @@ public class UserDTO {
         this.login = login;
         this.password = password;
         this.email = email;
-        // this.accounts = accounts;
+       // this.accounts = accounts;
     }
 
     public record RequestUser(String name, String login, String password, String email){}
@@ -37,7 +37,7 @@ public class UserDTO {
 
     public static UserDTO buildUserToResponseUser(User user){
 
-        // List<UUID> accounts_id = new ArrayList<>();
+       // List<UUID> accounts_id = new ArrayList<>();
         //user.getContas().stream().map(c-> accounts_id.add(c.getId()));
 
         return new UserDTO().builder()

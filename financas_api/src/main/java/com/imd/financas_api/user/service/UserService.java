@@ -79,8 +79,8 @@ public class UserService {
         UserDTO userDTO = null;
         Optional<User> user = repository.findByLogin(login);
         if(user.isPresent()){
-            String passwordEncoder = encoder.encode(password);
-            if(passwordEncoder.equals(password)) {userDTO = UserDTO.buildUserToResponseUser(user.get());}
+           String passwordEncoder = encoder.encode(password);
+           if(passwordEncoder.equals(password)) {userDTO = UserDTO.buildUserToResponseUser(user.get());}
         }
         return userDTO;
     }

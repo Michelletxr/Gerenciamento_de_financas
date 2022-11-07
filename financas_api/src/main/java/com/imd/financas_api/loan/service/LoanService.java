@@ -16,7 +16,7 @@ public class LoanService {
     private final LoanRepository repository;
     private final LoanDTO dto;
 
-    private JWTConfig jwtConfig;
+   // private JWTConfig jwtConfig;
 
     public LoanService(LoanRepository repository){
         this.repository = repository;

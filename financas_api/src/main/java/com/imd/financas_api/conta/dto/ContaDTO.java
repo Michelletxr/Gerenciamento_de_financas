@@ -4,6 +4,9 @@ import com.imd.financas_api.conta.model.Conta;
 import com.sun.istack.NotNull;
 import lombok.*;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.UUID;
 
 @Data
@@ -11,20 +14,26 @@ import java.util.UUID;
 @EqualsAndHashCode
 @ToString
 public class ContaDTO {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @NotNull
     private String name;
     @NotNull
     private Double value;
 
+    private UUID user_id;
+
     @Builder
-    public ContaDTO(UUID id, String name, Double value) {
+    public ContaDTO(UUID id, String name, Double value, UUID user_id) {
         this.id = id;
         this.name = name;
         this.value = value;
+        this.user_id = user_id;
     }
 
-    public record RequestConta(String name, Double value){}
+    public record RequestConta(String name, Double value,String user_id){}
 
     public record ResponseConta(UUID id, String login, Double value){}
 
