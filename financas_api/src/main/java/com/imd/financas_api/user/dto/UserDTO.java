@@ -13,9 +13,9 @@ import java.util.UUID;
 @ToString
 public class UserDTO {
     private UUID id;
-   @NotNull
+    @NotNull
     private String name;
-   @NotNull
+    @NotNull
     private String login;
     private String password; //encoder
     private String email;

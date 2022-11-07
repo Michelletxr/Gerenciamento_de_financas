@@ -2,12 +2,12 @@ package com.imd.financas_api.abstracts;
 
 import com.imd.financas_api.conta.model.Conta;
 import com.sun.istack.NotNull;
-import org.joda.time.DateTimeZone;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.Date;
 import java.util.UUID;
 
 public abstract class Ganho {
@@ -15,10 +15,10 @@ public abstract class Ganho {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @NotNull
-    private String descricao;
+    private String description;
     @NotNull
-    private Double valor;
+    private Double value;
     @OneToMany
-    private Conta conta;
-    private DateTimeZone data_entrada;
+    private Conta account;
+    private Date data_recebimento;
 }

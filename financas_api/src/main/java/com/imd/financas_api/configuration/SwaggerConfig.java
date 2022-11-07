@@ -24,7 +24,7 @@ public class SwaggerConfig {
     @Bean
     public Docket docket(){
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(metaInfo())
+               .apiInfo(metaInfo())
                 .securityContexts(Arrays.asList(securityContext()))
                 .securitySchemes(Arrays.asList(apiKey()))
                 .select()

@@ -5,15 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="560248e8-5631-46b2-8fa6-1639b69c56a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/security/JWTAuthFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imd/financas_api/security/JWTAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/FinancasApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/FinancasApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/user/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/user/dto/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../financas_api/src/main/java/com/imd/financas_api/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/financas_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/financas_api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

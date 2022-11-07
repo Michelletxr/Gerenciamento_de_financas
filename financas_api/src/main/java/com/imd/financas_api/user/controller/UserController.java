@@ -19,8 +19,8 @@ public class UserController {
     private final UserDTO dto;
 
     public UserController(UserService service){
-       this.service = service;
-       this.dto = new UserDTO();
+        this.service = service;
+        this.dto = new UserDTO();
     }
 
     @PostMapping

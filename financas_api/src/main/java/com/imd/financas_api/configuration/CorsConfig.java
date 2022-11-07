@@ -1,10 +1,11 @@
 package com.imd.financas_api.configuration;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
-//remover
+@Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
     @Override
@@ -12,6 +13,6 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
-        }
+    }
 }
 

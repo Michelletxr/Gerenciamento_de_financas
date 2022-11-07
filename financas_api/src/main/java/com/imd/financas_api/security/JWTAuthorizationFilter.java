@@ -22,6 +22,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
+
     }
 
     @Override
@@ -46,14 +47,12 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     private UsernamePasswordAuthenticationToken getAuthenticationToken(String token) {
 
         if (token != null) {
-            // parse the token.
             String user = JWT.require(Algorithm.HMAC512(SECRET))
                     .build()
                     .verify(token)
                     .getSubject();
 
             if (user != null) {
-                // new arraylist means authorities
                 return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
             }
 
