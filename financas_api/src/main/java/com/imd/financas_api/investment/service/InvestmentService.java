@@ -2,8 +2,8 @@ package com.imd.financas_api.investment.service;
 
 import com.imd.financas_api.investment.dto.InvestmentDTO;
 import com.imd.financas_api.investment.model.Investment;
-import com.imd.financas_api.security.JWTConfig;
 import com.imd.financas_api.investment.repository.InvestmentRepository;
+import com.imd.financas_api.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,14 +14,15 @@ import java.util.UUID;
 @Service
 public class InvestmentService {
     private final InvestmentRepository repository;
+
+    private final UserRepository userRepository;
     private final InvestmentDTO dto;
 
-    private JWTConfig jwtConfig;
 
-    public InvestmentService(InvestmentRepository repository){
+    public InvestmentService(InvestmentRepository repository, UserRepository userRepository){
         this.repository = repository;
+        this.userRepository = userRepository;
         this.dto = new InvestmentDTO();
-        this.jwtConfig = new JWTConfig();
     }
 
     public List<InvestmentDTO> findAll() {

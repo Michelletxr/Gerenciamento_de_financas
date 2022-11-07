@@ -1,6 +1,5 @@
 package com.imd.financas_api.loan.service;
 
-import com.imd.financas_api.security.JWTConfig;
 import com.imd.financas_api.loan.dto.LoanDTO;
 import com.imd.financas_api.loan.model.Loan;
 import com.imd.financas_api.loan.repository.LoanRepository;
@@ -21,7 +20,6 @@ public class LoanService {
     public LoanService(LoanRepository repository){
         this.repository = repository;
         this.dto = new LoanDTO();
-        this.jwtConfig = new JWTConfig();
     }
 
     public List<LoanDTO> findAll() {
