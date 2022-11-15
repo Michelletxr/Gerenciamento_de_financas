@@ -3,10 +3,11 @@ package com.imd.financas_api.conta.service;
 import com.imd.financas_api.conta.dto.ContaDTO;
 import com.imd.financas_api.conta.model.Conta;
 import com.imd.financas_api.conta.repository.ContaRepository;
+import com.imd.financas_api.user.model.User;
+import com.imd.financas_api.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -14,12 +15,14 @@ import java.util.UUID;
 public class ContaService {
 
     private final ContaRepository repository;
+    private final UserRepository userRepository;
     private final ContaDTO dto;
 
    // private JWTConfig jwtConfig;
 
-    public ContaService(ContaRepository repository){
+    public ContaService(ContaRepository repository, UserRepository userRepository){
         this.repository = repository;
+        this.userRepository = userRepository;
         this.dto = new ContaDTO();
        // this.jwtConfig = new JWTConfig();
     }
@@ -41,11 +44,13 @@ public class ContaService {
     }
     public ContaDTO Save(ContaDTO.RequestConta requestConta){
         ContaDTO responseConta = null;
-        if(!Objects.isNull(requestConta)){
+        Optional<User> user = userRepository.findById(UUID.fromString(requestConta.user_id()));
+        if(user.isPresent()){
             {
                 Conta conta = new Conta().builder()
                         .name(requestConta.name())
                         .value(requestConta.value())
+                        .user(user.get())
                         .build();
 
                 Conta createConta = repository.save(conta);

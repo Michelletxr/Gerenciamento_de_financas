@@ -3,6 +3,7 @@ package com.imd.financas_api.user.service;
 import com.imd.financas_api.user.dto.UserDTO;
 import com.imd.financas_api.user.model.User;
 import com.imd.financas_api.user.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +16,15 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository repository;
-    private final UserDTO dto;
 
-    private PasswordEncoder encoder;
+    @Autowired
+    private  UserDTO dto;
+    private final PasswordEncoder encoder;
 
-    public UserService(UserRepository repository){
+    public UserService(UserRepository repository, UserDTO dto, PasswordEncoder encoder) {
         this.repository = repository;
-        this.dto = new UserDTO();
+        this.dto = dto;
+        this.encoder = encoder;
     }
 
     public List<UserDTO> findAll() {
@@ -69,7 +72,8 @@ public class UserService {
 
     public boolean verifyUser(String login){
         boolean isValid = false;
-        if(Objects.isNull(repository.findByLogin(login))){
+        Optional<User> user = repository.findByLogin(login);
+        if(!user.isPresent()){
             isValid = true;
         }
         return isValid;

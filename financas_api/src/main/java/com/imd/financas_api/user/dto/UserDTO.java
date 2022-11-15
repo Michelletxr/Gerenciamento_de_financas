@@ -3,6 +3,7 @@ package com.imd.financas_api.user.dto;
 import com.imd.financas_api.user.model.User;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
+@Component
 public class UserDTO {
     private UUID id;
     @NotNull
@@ -22,7 +24,7 @@ public class UserDTO {
     private List<UUID> accounts;
 
     @Builder
-    public UserDTO(UUID id, String name, String login, String password, String email, List<UUID> accounts) {
+    public UserDTO(UUID id, String name, String login, String password, String email) {
         this.id = id;
         this.name = name;
         this.login = login;

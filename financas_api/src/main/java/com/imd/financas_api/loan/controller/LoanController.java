@@ -28,7 +28,7 @@ public class LoanController {
         if(!Objects.isNull(responseLoan)){
             response = new ResponseEntity<>(responseLoan, HttpStatus.OK);
         }else{
-            response = new ResponseEntity<>("erro ao tentar salvar usuário", HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>("erro ao tentar salvar empréstimo", HttpStatus.BAD_REQUEST);
         }
 
         return response;
