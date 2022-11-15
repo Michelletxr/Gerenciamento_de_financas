@@ -9,13 +9,10 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="investimento", schema = "public")
+@Table(name="investiment", schema = "public")
 public class Investment {
-
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
-    private Integer id_investment;
     @NotNull
     private String corretora;
 
@@ -35,7 +32,6 @@ public class Investment {
     @Builder
     public Investment(UUID id, Integer id_investment, String corretora, String titulo, String tipo_titulo, Date vencimento_titulo, Date data_investimento, Double investido, String objetivo) {
         this.id = id;
-        this.id_investment = id_investment;
         this.corretora = corretora;
         this.titulo = titulo;
         this.tipo_titulo = tipo_titulo;

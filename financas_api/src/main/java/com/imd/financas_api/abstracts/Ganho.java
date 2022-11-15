@@ -2,23 +2,25 @@ package com.imd.financas_api.abstracts;
 
 import com.imd.financas_api.conta.model.Conta;
 import com.sun.istack.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
+@Data
+@NoArgsConstructor
+@MappedSuperclass
 public abstract class Ganho {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    protected UUID id;
+    protected String description;
     @NotNull
-    private String description;
-    @NotNull
-    private Double value;
-    @OneToMany
-    private Conta account;
-    private Date data_recebimento;
+    protected Double value;
+    @ManyToOne
+    @JoinColumn(name = "conta_id",  referencedColumnName = "id")
+    protected Conta conta;
+    protected Date data_recebimento;
 }

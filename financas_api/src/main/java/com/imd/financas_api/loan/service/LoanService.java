@@ -1,24 +1,25 @@
 package com.imd.financas_api.loan.service;
 
+import com.imd.financas_api.conta.model.Conta;
+import com.imd.financas_api.conta.repository.ContaRepository;
 import com.imd.financas_api.loan.dto.LoanDTO;
 import com.imd.financas_api.loan.model.Loan;
 import com.imd.financas_api.loan.repository.LoanRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class LoanService {
     private final LoanRepository repository;
+    private final ContaRepository contaRepository;
     private final LoanDTO dto;
 
-   // private JWTConfig jwtConfig;
-
-    public LoanService(LoanRepository repository){
+    public LoanService(LoanRepository repository, ContaRepository contaRepository){
         this.repository = repository;
+        this.contaRepository = contaRepository;
         this.dto = new LoanDTO();
     }
 
@@ -39,25 +40,22 @@ public class LoanService {
     }
     public LoanDTO Save(LoanDTO.RequestLoan requestLoan){
         LoanDTO responseLoan = null;
-        if(!Objects.isNull(requestLoan)){
-            //if(verifyUser(requestLoan.login()))
-            //{
+        Optional<Conta> conta  = contaRepository.findById(requestLoan.conta_id());
+        if(conta.isPresent()){
                 Loan loan = new Loan().builder()
                         .descricao(requestLoan.descricao())
                         .valor(requestLoan.valor())
                         .valor_pagar(requestLoan.valor_pagar())
-                        .parcelas(requestLoan.parcelas())
+                       // .parcels(requestLoan.parcelas())
                         .tipo_juros(requestLoan.tipo_juros())
                         .juros(requestLoan.juros())
-                        .valor_parcela(requestLoan.valor_parcela())
                         .data_inicio(requestLoan.data_inicio())
                         .data_final(requestLoan.data_final())
-                        .parcela(requestLoan.parcela())
+                        .conta(conta.get())
                         .build();
 
                 Loan createLoan = repository.save(loan);
                 responseLoan = dto.buildLoanToResponseLoan(createLoan);
-           // }
         }
         return responseLoan;
     }
@@ -71,11 +69,4 @@ public class LoanService {
         return isDelet;
     }
 
-   /* public boolean verifyUser(String login){
-        boolean isValid = false;
-        if(Objects.isNull(repository.findByLogin(login))){
-            isValid = true;
-        }
-        return isValid;
-    }*/
 }

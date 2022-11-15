@@ -31,8 +31,8 @@ public class User {
     private String password;
     private String email;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Conta> contas;
+   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   private List<Conta> contas;
 
     @Builder
     public User(UUID id, String name, String login, String password, String email, List<Conta> accountList) {

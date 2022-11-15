@@ -1,52 +1,40 @@
 package com.imd.financas_api.loan.model;
 
-import com.sun.istack.NotNull;
-import lombok.*;
+import com.imd.financas_api.abstracts.Ganho;
+import com.imd.financas_api.conta.model.Conta;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="emprestimo", schema = "public")
-public class Loan {
-
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-    @NotNull
-    private String descricao;
-
-    private Double valor;
-
+@Table(name="loan", schema = "public")
+public class Loan extends Ganho {
     private Double valor_pagar;
-
-    private Integer parcelas;
-
     private String tipo_juros;
-
     private Double juros;
-
-    private Double valor_parcela;
-
-    private Date data_inicio;
-
     private Date data_final;
-
-    private Integer[] parcela;
+    @OneToMany(mappedBy = "emprestimo", targetEntity = Parcel.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Parcel> parcelas;
 
     @Builder
-    public Loan(UUID id, String descricao, Double valor, Double valor_pagar, Integer parcelas, String tipo_juros, Double juros, Double valor_parcela, Date data_inicio, Date data_final, Integer[] parcela) {
+    public Loan(UUID id, String descricao, Double valor, Double valor_pagar, String tipo_juros, Double juros,
+                Date data_inicio, Date data_final, List<Parcel> parcels, Conta conta) {
         this.id = id;
-        this.descricao = descricao;
-        this.valor = valor;
+        this.description = descricao;
+        this.value = valor;
         this.valor_pagar = valor_pagar;
-        this.parcelas = parcelas;
         this.tipo_juros = tipo_juros;
         this.juros = juros;
-        this.valor_parcela = valor_parcela;
-        this.data_inicio = data_inicio;
+        this.data_recebimento = data_inicio;
         this.data_final = data_final;
-        this.parcela = parcela;
+        this.parcelas = parcels;
+        this.conta = conta;
     }
 }

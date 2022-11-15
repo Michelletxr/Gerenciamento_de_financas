@@ -2,25 +2,27 @@ package com.imd.financas_api.abstracts;
 
 import com.imd.financas_api.conta.model.Conta;
 import com.sun.istack.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.joda.time.DateTimeZone;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.UUID;
 
+@Data
+@NoArgsConstructor
+@MappedSuperclass
 public abstract class Gasto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @NotNull
     private String description;
     @NotNull
     private Double value;
-    @OneToMany
-    private Conta account;
+
+    @ManyToOne
+    @JoinColumn(name = "conta_id",  referencedColumnName = "id")
+    private Conta conta;
     private DateTimeZone data_vencimento;
     private DateTimeZone data_pagamento;
-    private boolean pago;
 }

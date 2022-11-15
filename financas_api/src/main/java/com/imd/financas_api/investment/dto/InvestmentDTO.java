@@ -51,7 +51,6 @@ public class InvestmentDTO {
     public InvestmentDTO buildInvestmentToResponseInvestment(Investment investment){
         return new InvestmentDTO().builder()
                 .id(investment.getId())
-                .id_investment(investment.getId_investment())
                 .corretora(investment.getCorretora())
                 .titulo(investment.getTitulo())
                 .tipo_titulo(investment.getTipo_titulo())
