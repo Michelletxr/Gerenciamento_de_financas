@@ -42,6 +42,12 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    @GetMapping("/login")
+    public ResponseEntity<UserDTO> getByName(@RequestParam String userLogin){
+        UserDTO userResponse = service.gerUserByLogin(userLogin);
+        return new ResponseEntity<>(userResponse, HttpStatus.OK);
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> findById(@PathVariable UUID id){
         ResponseEntity response;

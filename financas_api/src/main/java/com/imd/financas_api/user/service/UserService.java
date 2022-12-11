@@ -79,13 +79,14 @@ public class UserService {
         return isValid;
     }
 
-    public UserDTO gerUserByLogin(String login, String password){
+    public UserDTO gerUserByLogin(String login){
         UserDTO userDTO = null;
         Optional<User> user = repository.findByLogin(login);
         if(user.isPresent()){
-           String passwordEncoder = encoder.encode(password);
-           if(passwordEncoder.equals(password)) {userDTO = UserDTO.buildUserToResponseUser(user.get());}
+            userDTO = UserDTO.buildUserToResponseUser(user.get());
         }
         return userDTO;
     }
+
+
 }

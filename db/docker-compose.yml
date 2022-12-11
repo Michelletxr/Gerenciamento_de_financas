@@ -1,0 +1,24 @@
+version: "3.5"
+
+services:
+  db-financas:
+    container_name: financas-db
+    image: postgres
+    environment:
+      POSTGRES_DB: financas_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5431:5432"
+    restart: unless-stopped
+  db-messages:
+    container_name: financas-messages
+    image: postgres
+    environment:
+      POSTGRES_DB: financas_messages
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5430:5432"
+
+

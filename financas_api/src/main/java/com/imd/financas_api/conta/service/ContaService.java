@@ -70,4 +70,12 @@ public class ContaService {
         return isDelet;
     }
 
+    public ContaDTO findByUser(UUID id) {
+        Optional<Conta> conta = repository.findByUserId(id);
+        ContaDTO responseConta = null;
+        if(conta.isPresent()){
+            responseConta = dto.buildContaToResponseConta(conta.get());
+        }
+        return responseConta;
+    }
 }
