@@ -30,9 +30,10 @@ public class InvestmentDTO {
 
     private String objetivo;
 
+    private UUID user;
 
     @Builder
-    public InvestmentDTO(UUID id, Integer id_investment, String corretora, String titulo, String tipo_titulo, Date vencimento_titulo, Date data_investimento, Double investido, String objetivo) {
+    public InvestmentDTO(UUID id, Integer id_investment, String corretora, String titulo, String tipo_titulo, Date vencimento_titulo, Date data_investimento, Double investido, String objetivo, UUID user) {
         this.id = id;
         this.id_investment = id_investment;
         this.corretora = corretora;
@@ -42,9 +43,10 @@ public class InvestmentDTO {
         this.data_investimento = data_investimento;
         this.investido = investido;
         this.objetivo = objetivo;
+        this.user = user;
     }
 
-    public record RequestInvestment(Integer id_investment, String corretora, String titulo, String tipo_titulo, Date vencimento_titulo, Date data_investimento, Double investido, String objetivo){}
+    public record RequestInvestment(Integer id_investment, String corretora, String titulo, String tipo_titulo, Date vencimento_titulo, Date data_investimento, Double investido, String objetivo,UUID user){}
 
     public record ResponseInvestment(UUID id, Integer id_investment, String corretora, String titulo, String tipo_titulo, Date vencimento_titulo, Date data_investimento, Double investido, String objetivo){}
 
@@ -58,6 +60,7 @@ public class InvestmentDTO {
                 .data_investimento(investment.getData_investimento())
                 .investido(investment.getInvestido())
                 .objetivo(investment.getObjetivo())
+                .user(user)
                 .build();
 
     }

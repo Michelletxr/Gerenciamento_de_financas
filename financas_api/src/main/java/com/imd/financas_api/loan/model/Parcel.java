@@ -1,13 +1,13 @@
 package com.imd.financas_api.loan.model;
 
-import com.imd.financas_api.abstracts.Gasto;
 import com.imd.financas_api.conta.model.Conta;
+import com.imd.financas_api.general.Gasto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.joda.time.DateTimeZone;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
@@ -23,7 +23,7 @@ public class Parcel extends Gasto {
 
     @Builder
     public Parcel(UUID id, Status status, Loan emprestimo, String description, Double value, Conta conta,
-                  DateTimeZone data_vencimento, DateTimeZone data_pagamento) {
+                  Date data_vencimento, Date data_pagamento) {
         this.status = status;
         this.emprestimo = emprestimo;
     }

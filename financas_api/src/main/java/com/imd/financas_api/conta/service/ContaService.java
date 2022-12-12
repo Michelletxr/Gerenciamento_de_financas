@@ -7,6 +7,7 @@ import com.imd.financas_api.user.model.User;
 import com.imd.financas_api.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -46,14 +47,19 @@ public class ContaService {
         ContaDTO responseConta = null;
         Optional<User> user = userRepository.findById(UUID.fromString(requestConta.user_id()));
         if(user.isPresent()){
+            User userGet = user.get();
             {
                 Conta conta = new Conta().builder()
                         .name(requestConta.name())
                         .value(requestConta.value())
-                        .user(user.get())
+                        .user(userGet)
                         .build();
 
                 Conta createConta = repository.save(conta);
+                List<Conta> contas = user.get().getContas();
+                contas.add(createConta);
+                userGet.setContas(contas);
+                userRepository.save(userGet);
                 responseConta = dto.buildContaToResponseConta(createConta);
             }
         }
@@ -70,11 +76,17 @@ public class ContaService {
         return isDelet;
     }
 
-    public ContaDTO findByUser(UUID id) {
-        Optional<Conta> conta = repository.findByUserId(id);
-        ContaDTO responseConta = null;
-        if(conta.isPresent()){
-            responseConta = dto.buildContaToResponseConta(conta.get());
+    public List<ContaDTO> findByUser(UUID id) {
+        List<Conta> contas = repository.findAll();
+        List<ContaDTO> responseConta = new ArrayList<>();
+        if(!contas.isEmpty()){
+           contas.forEach(conta -> {
+               System.out.println(conta.getUser().getId());
+               if(id.equals(conta.getUser().getId())){
+                   System.out.println(conta.getName());
+                   responseConta.add(dto.buildContaToResponseConta(conta));
+               }
+           });
         }
         return responseConta;
     }

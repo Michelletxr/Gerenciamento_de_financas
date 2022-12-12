@@ -38,8 +38,8 @@ public class ParcelDTO {
         this.data_pagamento = data_pagamento;
     }
 
-    public record RequestParcel(UUID id, Status status, UUID conta_id, UUID emprestimo_id, String descricao, Double valor,
-                                DateTimeZone data_vencimento, DateTimeZone data_pagamento){}
+    public record RequestParcel(Status status, UUID conta_id, UUID emprestimo_id, String descricao, Double valor,
+                                Date data_vencimento, Date data_pagamento){}
 
     public record ResponseParcel(UUID id, String descricao, Double valor, Double valor_pagar, String tipo_juros,
                                  Double juros, Date data_inicio, Date data_final, List<Parcel> parcelas){}

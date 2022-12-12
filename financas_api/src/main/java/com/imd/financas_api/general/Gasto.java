@@ -1,4 +1,4 @@
-package com.imd.financas_api.abstracts;
+package com.imd.financas_api.general;
 
 import com.imd.financas_api.conta.model.Conta;
 import com.sun.istack.NotNull;

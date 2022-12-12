@@ -1,6 +1,6 @@
 package com.imd.financas_api.loan.model;
 
-import com.imd.financas_api.abstracts.Ganho;
+import com.imd.financas_api.general.Ganho;
 import com.imd.financas_api.conta.model.Conta;
 import lombok.Builder;
 import lombok.Data;

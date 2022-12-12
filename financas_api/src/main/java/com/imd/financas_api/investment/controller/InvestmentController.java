@@ -63,4 +63,17 @@ public class InvestmentController {
         }
         return response;
     }
+
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity<?> findByUser(@PathVariable UUID id){
+        ResponseEntity response;
+        List<InvestmentDTO> responseList = service.findByUser(id);
+        if(!responseList.isEmpty()){
+            response = new ResponseEntity<>(responseList, HttpStatus.OK);
+        }else {
+            response = new ResponseEntity<>("erro ao solicitar emprestimo com o id informado",HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
+
 }

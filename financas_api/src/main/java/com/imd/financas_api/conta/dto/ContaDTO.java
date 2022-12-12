@@ -42,7 +42,7 @@ public class ContaDTO {
                 .id(conta.getId())
                 .name(conta.getName())
                 .value(conta.getValue())
-                .user_id(conta.getId())
+                .user_id(conta.getUser().getId())
                 .build();
 
     }

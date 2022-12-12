@@ -54,11 +54,11 @@ public class ContaController {
         return response;
     }
 
-    @GetMapping(value = "/{userId}")
-    public ResponseEntity<?> findByUser(@PathVariable UUID userId){
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity<?> findByUser(@PathVariable UUID id){
         ResponseEntity response;
-        ContaDTO responseConta = service.findByUser(userId);
-        if(!Objects.isNull(responseConta)){
+        List<ContaDTO> responseConta = service.findByUser(id);
+        if(!responseConta.isEmpty()){
             response = new ResponseEntity<>(responseConta, HttpStatus.OK);
         }else {
             response = new ResponseEntity<>("erro ao solicitar conta com o id informado",HttpStatus.BAD_REQUEST);

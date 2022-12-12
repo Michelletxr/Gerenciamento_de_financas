@@ -7,6 +7,7 @@ import com.imd.financas_api.loan.model.Loan;
 import com.imd.financas_api.loan.repository.LoanRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -67,6 +68,19 @@ public class LoanService {
             isDelet = true;
         }
         return isDelet;
+    }
+
+    public List<LoanDTO> findByUser(UUID id) {
+        List<Loan> list = repository.findAll();
+        List<LoanDTO> responseLoan = new ArrayList<>();
+        if(!list.isEmpty()){
+            list.forEach(loan -> {
+                if(id.equals(loan.getConta().getUser().getId())){
+                    responseLoan.add(dto.buildLoanToResponseLoan(loan));
+                }
+            });
+        }
+        return responseLoan;
     }
 
 }

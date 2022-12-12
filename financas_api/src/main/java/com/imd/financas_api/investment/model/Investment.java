@@ -1,5 +1,6 @@
 package com.imd.financas_api.investment.model;
 
+import com.imd.financas_api.user.model.User;
 import com.sun.istack.NotNull;
 import lombok.*;
 import javax.persistence.*;
@@ -28,9 +29,13 @@ public class Investment {
 
     private String objetivo;
 
+    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UUID user;
 
     @Builder
-    public Investment(UUID id, Integer id_investment, String corretora, String titulo, String tipo_titulo, Date vencimento_titulo, Date data_investimento, Double investido, String objetivo) {
+    public Investment(UUID id, Integer id_investment, String corretora, String titulo, String tipo_titulo,
+                      Date vencimento_titulo, Date data_investimento, Double investido, String objetivo, UUID user) {
         this.id = id;
         this.corretora = corretora;
         this.titulo = titulo;
@@ -39,5 +44,6 @@ public class Investment {
         this.data_investimento = data_investimento;
         this.investido = investido;
         this.objetivo = objetivo;
+        this.user = user;
     }
 }

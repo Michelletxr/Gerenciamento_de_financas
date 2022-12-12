@@ -6,10 +6,7 @@ import com.imd.financas_api.investment.repository.InvestmentRepository;
 import com.imd.financas_api.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class InvestmentService {
@@ -72,12 +69,18 @@ public class InvestmentService {
         return isDelet;
     }
 
-   /* public boolean verifyUser(String login){
-        boolean isValid = false;
-        if(Objects.isNull(repository.findByLogin(login))){
-            isValid = true;
+    public List<InvestmentDTO> findByUser(UUID id) {
+        List<Investment> list = repository.findAll();
+        List<InvestmentDTO> response = new ArrayList<>();
+        if(!list.isEmpty()){
+            list.forEach(item -> {
+                System.out.println(item.getUser());
+                if(id.equals(item.getUser())){
+                    response.add(dto.buildInvestmentToResponseInvestment(item));
+                }
+            });
         }
-        return isValid;
-    }*/
+        return response;
+    }
 }
 

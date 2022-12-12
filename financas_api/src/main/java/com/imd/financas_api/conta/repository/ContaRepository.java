@@ -7,6 +7,6 @@ import java.util.UUID;
 
 public interface ContaRepository extends JpaRepository<Conta, UUID> {
 
-    Optional<Conta> findByUserId(UUID id);
+    Optional<Conta> findByUser_id(UUID id);
 }
 

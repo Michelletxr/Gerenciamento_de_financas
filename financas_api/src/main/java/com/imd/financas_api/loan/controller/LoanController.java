@@ -63,4 +63,17 @@ public class LoanController {
         }
         return response;
     }
+
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity<?> findByUser(@PathVariable UUID id){
+        ResponseEntity response;
+        List<LoanDTO> responseConta = service.findByUser(id);
+        if(!responseConta.isEmpty()){
+            response = new ResponseEntity<>(responseConta, HttpStatus.OK);
+        }else {
+            response = new ResponseEntity<>("erro ao solicitar empréstimo com o id informado",HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
+
 }
